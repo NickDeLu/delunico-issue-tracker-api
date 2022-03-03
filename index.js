@@ -11,9 +11,8 @@ app.use(bodyParser.json())
 app.get('/api/getProjects', async (req, res) => {
 
     try {
-        let proj = (await db.query('SELECT * FROM Projects'))
-        console.log(proj)
-        res.status(200).json(proj)
+        let proj = await db.query('SELECT * FROM Project')
+        res.status(200).json(proj.rows)
     } catch (err) {
         res.status(500).json(err)
     }
@@ -22,8 +21,8 @@ app.get('/api/getProjects', async (req, res) => {
 app.post('/api/createProject', async (req, res) => {
     const project = req.body.project
     try {
-        let newProj = (await db.query('INSERT INTO Project (title) values ($1)', [project.title]))
-        res.status(200).json(newProj)
+        let newProj = await db.query('INSERT INTO Project (project_title) values ($1)', [project.title])
+        res.status(200).json(project)
     } catch (err) {
         res.status(500).json(err)
     }

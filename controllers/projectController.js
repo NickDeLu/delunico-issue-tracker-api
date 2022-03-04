@@ -1,5 +1,15 @@
 const Projects = require('../models/project');
 
+exports.getProject = async (req, res) => {
+
+    try {
+        let response = await Projects.getProject(req.param('id'));
+        res.status(200).json(response.rows)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+};
+
 exports.getProjects = async (req, res) => {
 
     try {

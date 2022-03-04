@@ -7,6 +7,10 @@ module.exports = class Project {
         this.project_title = project_title;
     }
 
+    static getProject(id) {
+        return db.query('SELECT * FROM project where id = $1', [id]);
+    }
+
     static getProjects() {
         return db.query('SELECT * FROM project');
     }

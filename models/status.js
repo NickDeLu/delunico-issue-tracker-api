@@ -14,11 +14,11 @@ module.exports = class Status {
     }
 
     static updateStatus(status) {
-        return db.query('UPDATE status SET  project_id = $1, status_title = $2, status_order = $3 WHERE id = $4', [status.project_id, status.status_title, status.status_order, status.id]);
+        return db.query('UPDATE status SET  project_id = $1, status_title = $2, status_order = $3 WHERE id = $4 RETURNING *', [status.project_id, status.status_title, status.status_order, status.id]);
     }
 
     static createStatus(status) {
-        return db.query('INSERT INTO status (project_id, status_title, status_order) values ($1, $2, $3)', [status.project_id, status.status_title, status.status_order]);
+        return db.query('INSERT INTO status (project_id, status_title, status_order) values ($1, $2, $3) RETURNING *', [status.project_id, status.status_title, status.status_order]);
     }
 
     static deleteStatus(id) {

@@ -14,7 +14,7 @@ exports.createTask = async (req, res) => {
     const task = req.body.task
     try {
         let response = await Tasks.createTask(task);
-        res.status(200).json(response)
+        res.status(200).json(response.rows[0])
     } catch (err) {
         res.status(500).json(err)
     }
@@ -33,7 +33,7 @@ exports.updateTask = async (req, res) => {
     const task = req.body.task
     try {
         let response = await Tasks.updateTask(task);
-        res.status(200).json(response)
+        res.status(200).json(response.rows[0])
     } catch (err) {
         res.status(500).json(err)
     }

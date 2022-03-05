@@ -14,7 +14,7 @@ exports.createStatus = async (req, res) => {
     const status = req.body.status
     try {
         let response = await Status.createStatus(status);
-        res.status(200).json(response)
+        res.status(200).json(response.rows[0])
     } catch (err) {
         res.status(500).json(err)
     }
@@ -33,7 +33,7 @@ exports.updateStatus = async (req, res) => {
     const status = req.body.status
     try {
         let response = await Status.updateStatus(status);
-        res.status(200).json(response)
+        res.status(200).json(response.rows[0])
     } catch (err) {
         res.status(500).json(err)
     }

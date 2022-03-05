@@ -16,11 +16,11 @@ module.exports = class Project {
     }
 
     static updateProject(project) {
-        return db.query('UPDATE project SET project_title = $1 WHERE id = $2', [project.title, project.id]);
+        return db.query('UPDATE project SET project_title = $1 WHERE id = $2 RETURNING *', [project.project_title, project.id]);
     }
 
     static createProject(project) {
-        return db.query('INSERT INTO project (project_title) values ($1)', [project.title]);
+        return db.query('INSERT INTO project (project_title) values ($1) RETURNING *', [project.project_title]);
     }
 
     static deleteProject(id) {

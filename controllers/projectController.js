@@ -4,7 +4,7 @@ exports.getProject = async (req, res) => {
 
     try {
         let response = await Projects.getProject(req.param('id'));
-        res.status(200).json(response.rows)
+        res.status(200).json(response.rows[0]) //returns an array by default but in this case theres only ever one project returned
     } catch (err) {
         res.status(500).json(err)
     }

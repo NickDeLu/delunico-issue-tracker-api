@@ -5,7 +5,9 @@ require('dotenv').config();
 const taskRoutes = require('./routes/taskRoutes');
 const statusRoutes = require('./routes/statusRoutes');
 const projectRoutes = require('./routes/projectRoutes');
+var cors = require('cors')
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
